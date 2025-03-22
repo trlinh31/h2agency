@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đăng nhập - H2 Agency</title>
+  <title>Đăng ký - H2 Agency</title>
   <meta name="description" content="Liên hệ với H2 Agency để nhận tư vấn về dịch vụ marketing tổng thể. Chúng tôi luôn sẵn sàng hỗ trợ bạn." />
   <link rel="stylesheet" href="./assets/styles/styles.css" />
   <link rel="icon" href="favicon.ico" />
@@ -17,31 +17,31 @@
     <div class="container">
       <div class="account-container">
         <div class="login-form">
-          <h2>Đăng nhập</h2>
-          <form>
+          <h2>Đăng ký</h2>
+          <form action="?page=dang-ky" method="post">
+            <input type="hidden" name="page" value="dang-ky">
             <div class="form-group">
-              <label for="username">Email<span class="required">*</span></label>
-              <input type="text" id="username" required>
+              <label for="fullName">Họ tên<span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email<span class="required">*</span></label>
+              <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
               <label for="password">Mật khẩu<span class="required">*</span></label>
-              <input type="password" id="password" required>
-              <div class="password-toggle">
-                <button type="button" id="togglePassword">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
-            </div>
-            <div class="form-group remember-me">
-              <input type="checkbox" id="remember">
-              <label for="remember">Ghi nhớ mật khẩu</label>
+              <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn-login">ĐĂNG NHẬP</button>
+              <label for="confirmPassword">Nhập lại mật khẩu<span class="required">*</span></label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn-login">TẠO TÀI KHOẢN</button>
             </div>
           </form>
           <div>
-            Bạn chưa có tài khoản? <a href="?page=dang-ky">Đăng ký ngay</a>
+            Bạn đã có tài khoản? <a href="?page=dang-ky">Đăng nhập</a>
           </div>
         </div>
       </div>
