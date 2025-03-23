@@ -124,7 +124,7 @@ class AuthController
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
-      return ['status' => false, 'message' => 'Email hoặc mật khẩu không đúng!'];
+      return ['status' => false, 'message' => 'Email hoặc mật khẩu không đúngggg!'];
     }
 
     if (password_verify($password, $user['password'])) {

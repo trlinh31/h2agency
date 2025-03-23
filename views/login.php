@@ -23,8 +23,7 @@
       <div class="account-container">
         <div class="login-form">
           <h2>Đăng nhập</h2>
-          <form action="?page=dang-nhap" method="post">
-            <input type="hidden" name="page" value="dang-nhap">
+          <form action="./dang-nhap" method="post">
             <div class="form-group">
               <label for="email">Email<span class="required">*</span></label>
               <input type="text" id="email" name="email" required>
@@ -38,7 +37,7 @@
             </div>
           </form>
           <div>
-            Bạn chưa có tài khoản? <a href="?page=dang-ky">Đăng ký ngay</a>
+            Bạn chưa có tài khoản? <a href="./dang-ky">Đăng ký ngay</a>
           </div>
         </div>
       </div>

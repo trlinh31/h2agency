@@ -6,7 +6,51 @@ class VnPayController
   private $vnp_TmnCode = "PJCNXYWL";
   private $vnp_HashSecret = "0NVE7YL3N6PKEJMJ8GYFPXDVQN5NABTE";
   private $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-  private $vnp_ReturnUrl = "http://localhost/h2agency/?page=ket-qua";
+  private $vnp_ReturnUrl = "http://localhost/h2agency/ket-qua";
+
+  private $conn;
+
+  public function __construct()
+  {
+    $database = new Database();
+    $db = $database->getConnection();
+    $this->conn = $db;
+  }
+
+  public function addOrder($productId, $totalPrice)
+  {
+    if (!isset($_SESSION['user_id'])) {
+      header('Location: ./dang-nhap');
+      exit();
+    }
+
+    $user_id = $_SESSION['user_id'];
+
+    $query = "INSERT INTO orders (user_id, total_price) VALUES (:user_id, :total_price)";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':total_price', $totalPrice);
+
+    if ($stmt->execute()) {
+      $order_id = $this->conn->lastInsertId();
+
+      $query = "SELECT file_path FROM products WHERE id = :product_id";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':product_id', $productId);
+      $stmt->execute();
+
+      $filePath = $stmt->fetchColumn();
+      $_SESSION['filePath'] = $filePath;
+
+      $query = "INSERT INTO order_items (order_id, product_id, price) VALUES (:order_id, :product_id, :price)";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':order_id', $order_id);
+      $stmt->bindParam(':product_id', $productId);
+      $stmt->bindParam(':price', $totalPrice);
+
+      $stmt->execute();
+    }
+  }
 
   public function processPayment($amount)
   {

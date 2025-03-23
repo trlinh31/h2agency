@@ -49,8 +49,10 @@
               <p style="margin-bottom: 12px;">
                 <strong><?= number_format($product['price'], 0, ',', '.') ?>đ</strong>
               </p>
-              <form action="" method="post">
-                <button type="submit" class="btn btn-secondary">TẢI XUỐNG</button>
+              <form action="./vnpay" method="post">
+                <input type="hidden" name="total_price" value="<?= $product['price'] ?>">
+                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                <button type="submit" class="btn btn-secondary">THANH TOÁN</button>
               </form>
             </div>
           </div>

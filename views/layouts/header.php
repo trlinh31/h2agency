@@ -5,13 +5,8 @@
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="#">Dịch Vụ</a></li>
-        <li><a href="#">Shop Online</a></li>
-        <li><a href="#">Tin Tức</a></li>
-        <li><a href="?page=lien-he">Liên Hệ</a></li>
-        <li><a href="#">Giới Thiệu</a></li>
-        <li><a href="?page=dang-nhap">Tài khoản</a></li>
-        <li><a href="?page=thanh-toan">Thanh toán</a></li>
+        <li><a href="./lien-he">Liên Hệ</a></li>
+        <li><a href="./dang-nhap">Tài khoản</a></li>
       </ul>
     </nav>
   </div>
