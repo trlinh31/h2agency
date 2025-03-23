@@ -21,7 +21,7 @@ switch ($request_uri) {
     $products = $productController->getProducts();
     require_once './views/homepage.php';
     break;
-  case 'lien-he':
+  case '/lien-he':
     require_once './views/contact.php';
     break;
   case 'dang-nhap':

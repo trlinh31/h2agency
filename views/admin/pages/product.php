@@ -26,20 +26,22 @@ $products = $productController->getProducts();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($products as $product) {
-                            echo "<tr>";
-                            echo "<td>" . $product['id'] . "</td>";
-                            echo "<td>" . $product['title'] . "</td>";
-                            echo "<td><a href='/../../" . $product['file_path'] . "' download>Tải xuống</a></td>";
-                            echo "<td>" . $product['description'] . "</td>";
-                            echo "<td>" . $product['price'] . "</td>";
-                            echo "<td><img src='../../../" . $product['thumbnail'] . "' alt='Course Image' style='width: 100px; height: auto;'></td>";
-                            echo "<td><a href='./edit-product.php?id=" . $product['id'] . "'>Edit</a> | <a href='../../../delete-product?id=" . $product['id'] . "'>Delete</a></td>";
-                            echo "</tr>";
-                        }
-                        ?>
+                        <?php foreach ($products as $product) : ?>
+                            <tr>
+                                <td><?= $product['id'] ?></td>
+                                <td><?= $product['title'] ?></td>
+                                <td><a href="<?= $product['file_path'] ?>" download> Tải xuống </a></td>
+                                <td><?= $product['description'] ?></td>
+                                <td><?= $product['price'] ?></td>
+                                <td><img src="<?= $product['thumbnail'] ?>" alt="Course Image" style="width: 100px; height: auto;"></td>
+                                <td>
+                                    <a href="./edit-product.php?id=<?= $product['id'] ?>">Edit</a> |
+                                    <a href="../../../delete-product?id=<?= $product['id'] ?>">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
+
                 </table>
             </div>
         </div>
