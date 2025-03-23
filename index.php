@@ -22,7 +22,6 @@ switch ($request_uri) {
     require_once './views/homepage.php';
     break;
   case '/lien-he':
-    // require_once './views/contact.php';
     require_once './views/contact.php';
     break;
   case 'dang-nhap':

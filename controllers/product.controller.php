@@ -50,6 +50,7 @@ class ProductController
        
 
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath);
+        $targetFilePath = 'http://localhost/h2agency/uploads/'  . $fileName;
         $imageFullPath = $targetFilePath;
 
         if (!isset($_FILES['filePdf']) || $_FILES['filePdf']['error'] !== 0) {
@@ -64,6 +65,7 @@ class ProductController
         }
 
         move_uploaded_file($_FILES['filePdf']['tmp_name'], $targetFilePdfPath);
+        $targetFilePdfPath = 'http://localhost/h2agency/uploads/' . $filePdf;
         $fileFullPath = $targetFilePdfPath;
 
         if (empty($_POST['title']) || empty($_POST['description']) || empty($_POST['price'])) {
@@ -149,8 +151,10 @@ public function updateProduct()
             $fileName = basename($_FILES['image']['name']);
             $targetFilePath = $uploadDir . $fileName;
             move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath);
+            $targetFilePath = 'http://localhost/h2agency/uploads/' . $fileName;
 
             $imageFullPath = $targetFilePath; 
+
         }
 
         $fileFullPath = $product['file_path']; 
@@ -166,7 +170,7 @@ public function updateProduct()
             $filePdf = basename($_FILES['filePdf']['name']);
             $targetFilePdfPath = $uploadDir . $filePdf;
             move_uploaded_file($_FILES['filePdf']['tmp_name'], $targetFilePdfPath);
-
+            $targetFilePath = 'http://localhost/h2agency/uploads/' . $filePdf;
             $fileFullPath = $targetFilePdfPath;
         }
 

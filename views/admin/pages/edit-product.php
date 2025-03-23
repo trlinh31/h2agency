@@ -34,7 +34,7 @@ $product = $productController->getProductById($id);
 
             <div class="col-sm-6 mb-3 mb-2">
                 <h4>Hình ảnh</h4>
-                <img src="<?php echo '../../../' . $product['thumbnail']; ?>"
+                <img src="<?php echo $product['thumbnail']; ?>"
                     style="width:200px" class="card-img-top"
                     alt="User Image" id="preview">
                 <input type="file" class="form-control" name="image" id="image" style="width: 150px;margin-top: 20px;" >

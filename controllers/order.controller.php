@@ -28,14 +28,12 @@ class OrderController
 
                 $product_id = $item['id'];
                 $price = $item['price'];
-                $quantity = $item['quantity'];
 
-                $query = "INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (:order_id, :product_id, :price, :quantity)";
+                $query = "INSERT INTO order_items (order_id, product_id, price) VALUES (:order_id, :product_id, :price)";
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(':order_id', $order_id);
                 $stmt->bindParam(':product_id', $product_id);
                 $stmt->bindParam(':price', $price);
-                $stmt->bindParam(':quantity', $quantity);
 
                 if (!$stmt->execute()) {
                     return false;
@@ -54,7 +52,7 @@ class OrderController
         orders.total_price AS total_price
     FROM orders
     INNER JOIN users ON orders.user_id = users.id";
-    
+
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
