@@ -13,28 +13,25 @@
 <body>
   <?php require_once('views/layouts/header.php'); ?>
 
+  <?php if (isset($_SESSION['error_message'])): ?>
+    <?php echo "<script>alert('" . $_SESSION['error_message'] . "')</script>"; ?>
+    <?php unset($_SESSION['error_message']); ?>
+  <?php endif; ?>
+
   <main class="main">
     <div class="container">
       <div class="account-container">
         <div class="login-form">
           <h2>Đăng nhập</h2>
-          <form>
+          <form action="?page=dang-nhap" method="post">
+            <input type="hidden" name="page" value="dang-nhap">
             <div class="form-group">
-              <label for="username">Email<span class="required">*</span></label>
-              <input type="text" id="username" required>
+              <label for="email">Email<span class="required">*</span></label>
+              <input type="text" id="email" name="email" required>
             </div>
             <div class="form-group">
               <label for="password">Mật khẩu<span class="required">*</span></label>
-              <input type="password" id="password" required>
-              <div class="password-toggle">
-                <button type="button" id="togglePassword">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
-            </div>
-            <div class="form-group remember-me">
-              <input type="checkbox" id="remember">
-              <label for="remember">Ghi nhớ mật khẩu</label>
+              <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
               <button type="submit" class="btn-login">ĐĂNG NHẬP</button>

@@ -1,15 +1,12 @@
-/* Google Font imports */
 @import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
-/* CSS Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Base Styles */
 :root {
   --primary-color: #c03578;
   --secondary-color: #1d3157;
@@ -65,7 +62,6 @@ img {
   height: auto;
 }
 
-/* Typography */
 h1,
 h2,
 h3,
@@ -85,7 +81,6 @@ h6 {
   text-transform: uppercase;
 }
 
-/* Buttons */
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -130,7 +125,6 @@ h6 {
   color: white;
 }
 
-/* Header */
 .header {
   background-color: white;
   box-shadow: var(--shadow);
@@ -191,7 +185,6 @@ h6 {
   transition: var(--transition);
 }
 
-/* Hero Section */
 .hero {
   padding: 80px 0;
   background: linear-gradient(135deg, rgba(250, 242, 255, 0.9), rgba(248, 221, 240, 0.9)),
@@ -244,7 +237,6 @@ h6 {
   }
 }
 
-/* Services Section */
 .services {
   padding: 80px 0;
   background-color: white;
@@ -286,11 +278,10 @@ h6 {
 .service-card p {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* About Section */
 .about {
   padding: 80px 0;
   background: linear-gradient(45deg, #f5f7fa, #f9f5fa);
@@ -333,7 +324,6 @@ h6 {
   text-align: right;
 }
 
-/* Why Choose Us Section */
 .why-choose-us {
   padding: 80px 0;
   background-color: white;
@@ -386,7 +376,6 @@ h6 {
   }
 }
 
-/* Pricing Section */
 .pricing {
   padding: 80px 0;
   background: linear-gradient(135deg, #f9f5fa, #f5f7fa);
@@ -470,7 +459,6 @@ h6 {
   width: 100%;
 }
 
-/* Stats Section */
 .stats {
   padding: 50px 0;
   background: linear-gradient(90deg, var(--primary-color), #a52965);
@@ -498,7 +486,6 @@ h6 {
   font-weight: 700;
 }
 
-/* SEO Value Section */
 .seo-value {
   padding: 80px 0;
   background-color: white;
@@ -510,7 +497,6 @@ h6 {
   margin: 0 auto;
 }
 
-/* Advantages Section */
 .advantages {
   padding: 80px 0;
   background: linear-gradient(135deg, #f5f7fa, #f9f5fa);
@@ -540,7 +526,6 @@ h6 {
   margin-bottom: 15px;
 }
 
-/* Partners Section */
 .partners {
   padding: 80px 0;
   background-color: white;
@@ -564,7 +549,6 @@ h6 {
   filter: grayscale(0%);
 }
 
-/* Contact Form */
 .contact-form {
   padding: 80px 0;
   background: linear-gradient(135deg, #f9f5fa, #f5f7fa);
@@ -601,7 +585,6 @@ h6 {
   resize: vertical;
 }
 
-/* FAQ Section */
 .faq {
   padding: 80px 0;
   background-color: white;
@@ -652,7 +635,6 @@ h6 {
   max-height: 1000px;
 }
 
-/* Footer */
 .footer {
   background-color: var(--secondary-color);
   color: white;
@@ -791,7 +773,6 @@ h6 {
   filter: brightness(0) invert(1);
 }
 
-/* Media Queries */
 @media (max-width: 1024px) {
   .hero .container,
   .about .container {
@@ -837,9 +818,6 @@ h6 {
   }
 }
 
-/* Contact Page Specific Styles */
-
-/* Hero Section */
 .contact-hero {
   background: linear-gradient(135deg, #20207b, #ae2aa8);
   padding: 80px 0;
@@ -867,7 +845,6 @@ h6 {
   background-color: white;
 }
 
-/* Contact Content Section */
 .contact-content {
   padding: 60px 0;
   background-color: #f9f5fa;
@@ -885,7 +862,6 @@ h6 {
   min-width: 300px;
 }
 
-/* Form Styles */
 .form-group {
   margin-bottom: 20px;
 }
@@ -923,7 +899,6 @@ h6 {
   font-size: 18px;
 }
 
-/* Contact Info Styles */
 .contact-info {
   margin-bottom: 40px;
 }
@@ -966,7 +941,6 @@ h6 {
   text-decoration: underline;
 }
 
-/* Social Media Icons */
 .social-contact h3 {
   margin-bottom: 20px;
   font-size: 20px;
@@ -1151,7 +1125,6 @@ h6 {
   color: var(--primary-color);
 }
 
-/* Map Section Styles */
 .map-section {
   margin-top: 50px;
 }
@@ -1175,7 +1148,6 @@ h6 {
   display: block;
 }
 
-/* Border Decoration */
 .border-decoration {
   position: absolute;
   top: 0;
@@ -1256,7 +1228,7 @@ h6 {
 
 .h2-media-tag {
   color: white;
-  font-family: 'Play', sans-serif;
+  font-family: "Play", sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 5px 20px;
@@ -1311,7 +1283,6 @@ h6 {
   font-size: 16px;
 }
 
-/* Services Section */
 .services {
   padding: 50px 0;
   background-color: var(--light-gray);
@@ -1335,7 +1306,6 @@ h6 {
   margin-top: 30px;
 }
 
-/* Rocket Section */
 .rocket-section {
   position: relative;
   max-width: 600px;
@@ -1349,7 +1319,6 @@ h6 {
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
 }
 
-/* Stats Section */
 .stats-section {
   display: flex;
   flex-wrap: wrap;
@@ -1378,7 +1347,7 @@ h6 {
   background-clip: text;
   color: transparent;
   margin-bottom: 10px;
-  font-family: 'Play', sans-serif;
+  font-family: "Play", sans-serif;
 }
 
 .stat-number span {
@@ -1390,7 +1359,6 @@ h6 {
   font-size: 14px;
 }
 
-/* Map Section */
 .map-section {
   padding: 50px 0;
 }
@@ -1398,4 +1366,41 @@ h6 {
 iframe {
   border-radius: 10px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
