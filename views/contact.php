@@ -25,21 +25,21 @@
       <div class="contact-grid">
         <div class="contact-form-section">
           <h2 class="section-title">Thông Tin Liên Hệ</h2>
-          <form id="contact-form">
-            <div class="form-group">
-              <label for="name">Họ & Tên</label>
-              <input type="text" id="name" placeholder="Nhập họ và tên của bạn" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Nội Dung</label>
-              <textarea id="message" rows="6" placeholder="Nhập nội dung tin nhắn của bạn" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Gửi</button>
-          </form>
+          <form id="contact-form" method="post" action="./add-contact">
+        <div class="form-group">
+          <input type="text" name="full_name" placeholder="Họ & tên" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <input type="text" name="title" placeholder="Tiêu đề" required />
+        </div>
+        <div class="form-group">
+          <textarea name="content" placeholder="Nội dung:" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Gửi</button>
+      </form>
         </div>
 
         <div class="contact-info-section">

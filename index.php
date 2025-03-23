@@ -22,6 +22,8 @@ switch ($request_uri) {
     $products = $productController->getProducts();
     require_once './views/homepage.php';
     break;
+  case '/admin':
+    header('Location: ./views/admin/pages/product.php');
   case '/lien-he':
     require_once './views/contact.php';
     break;
