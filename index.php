@@ -24,6 +24,10 @@ switch ($request_uri) {
     break;
   case '/admin':
     header('Location: ./views/admin/pages/product.php');
+    break;
+  case '/dang-xuat':
+    $authController->logout();
+    header('Location: ./');
   case '/lien-he':
     require_once './views/contact.php';
     break;
