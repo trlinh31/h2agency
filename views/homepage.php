@@ -14,7 +14,6 @@
 
 <body>
   <?php require_once('views/layouts/header.php'); ?>
-
   <section class="hero">
     <div class="container">
       <div class="hero-content">
@@ -255,18 +254,18 @@
   <section class="contact-form">
     <div class="container">
       <h2 class="section-title">ĐĂNG KÝ NGAY ĐỂ NHẬN TƯ VẤN KẾ HOẠCH MIỄN PHÍ CỦA H2 MEDIA CHO DOANH NGHIỆP</h2>
-      <form id="contact-form">
+      <form id="contact-form" method="post" action="./add-contact">
         <div class="form-group">
-          <input type="text" placeholder="Họ & tên" required />
+          <input type="text" name="full_name" placeholder="Họ & tên" required />
         </div>
         <div class="form-group">
-          <input type="email" placeholder="Email" required />
+          <input type="email" name="email" placeholder="Email" required />
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Tiêu đề" required />
+          <input type="text" name="title" placeholder="Tiêu đề" required />
         </div>
         <div class="form-group">
-          <textarea placeholder="Nội dung:" rows="5" required></textarea>
+          <textarea name="content" placeholder="Nội dung:" rows="5" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Gửi</button>
       </form>

@@ -64,55 +64,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Form Validation
-  const contactForm = document.getElementById("contact-form");
+  // const contactForm = document.getElementById("contact-form");
 
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+  // if (contactForm) {
+  //   contactForm.addEventListener("submit", (e) => {
+  //     e.preventDefault();
 
-      const formFields = contactForm.querySelectorAll("input, textarea");
-      let isValid = true;
+  //     const formFields = contactForm.querySelectorAll("input, textarea");
+  //     let isValid = true;
 
-      formFields.forEach((field) => {
-        if (field.hasAttribute("required") && !field.value.trim()) {
-          isValid = false;
-          field.classList.add("error");
+  //     formFields.forEach((field) => {
+  //       if (field.hasAttribute("required") && !field.value.trim()) {
+  //         isValid = false;
+  //         field.classList.add("error");
 
-          field.addEventListener("input", () => {
-            if (field.value.trim()) {
-              field.classList.remove("error");
-            } else {
-              field.classList.add("error");
-            }
-          });
-        }
-      });
+  //         field.addEventListener("input", () => {
+  //           if (field.value.trim()) {
+  //             field.classList.remove("error");
+  //           } else {
+  //             field.classList.add("error");
+  //           }
+  //         });
+  //       }
+  //     });
 
-      if (isValid) {
-        // Simulating form submission
-        const submitButton = contactForm.querySelector('button[type="submit"]');
+  //     if (isValid) {
+  //       // Simulating form submission
+  //       const submitButton = contactForm.querySelector('button[type="submit"]');
 
-        if (submitButton) {
-          const originalText = submitButton.textContent;
-          submitButton.textContent = "Đang gửi...";
-          submitButton.disabled = true;
+  //       if (submitButton) {
+  //         const originalText = submitButton.textContent;
+  //         submitButton.textContent = "Đang gửi...";
+  //         submitButton.disabled = true;
 
-          // Simulate API call delay
-          setTimeout(() => {
-            // Reset form after successful submission
-            contactForm.reset();
+  //         // Simulate API call delay
+  //         setTimeout(() => {
+  //           // Reset form after successful submission
+  //           contactForm.reset();
 
-            // Show success message
-            alert("Cảm ơn bạn đã gửi tin nhắn! Chúng tôi sẽ liên hệ lại với bạn sớm nhất có thể.");
+  //           // Show success message
+  //           alert("Cảm ơn bạn đã gửi tin nhắn! Chúng tôi sẽ liên hệ lại với bạn sớm nhất có thể.");
 
-            // Reset button
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-          }, 1500);
-        }
-      }
-    });
-  }
+  //           // Reset button
+  //           submitButton.textContent = originalText;
+  //           submitButton.disabled = false;
+  //         }, 1500);
+  //       }
+  //     }
+  //   });
+  // }
 
   // Animation on Scroll
   function animateOnScroll() {

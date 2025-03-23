@@ -1,11 +1,13 @@
 <?php
-
+require_once(__DIR__ . '/../database.php');
 class ProductController
 {
   private $conn;
 
-  public function __construct($db)
+  public function __construct()
   {
+    $database = new Database();
+    $db = $database->getConnection();
     $this->conn = $db;
   }
 
@@ -26,50 +28,175 @@ class ProductController
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  // public function addProduct($data, $file)
-  // {
-  //   try {
-  //     if ($file['product_image']['error'] == 0) {
-  //       $uploadDir = dirname(__DIR__) . "/uploads/";;
-  //       if (!is_dir($uploadDir)) {
-  //         mkdir($uploadDir, 0777, true);
-  //       }
+  public function addProduct()
+{
+    try {
+      
+      
 
-  //       $imageName = time() . "_" . basename($file['product_image']['name']);
-  //       $imagePath = $uploadDir . $imageName;
+        $uploadDir = './uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
 
-  //       $imageFullPath = "";
-  //       if (move_uploaded_file($file['product_image']['tmp_name'], $imagePath)) {
-  //         $imageFullPath = "http://localhost/kids_plaza/uploads/" . $imageName;
-  //       } else {
-  //         throw new Exception("Lỗi khi di chuyển file!");
-  //       }
-  //     } else {
-  //       throw new Exception("Lỗi tải ảnh: " . $file['product_image']['error']);
-  //     }
+        if (!isset($_FILES['image']) || $_FILES['image']['error'] !== 0) {
+            die("Lỗi tải ảnh lên: " . $_FILES['image']['error']);
+        }
 
-  //     $query = "INSERT INTO san_pham (ten_san_pham, so_luong, gia, gia_goc, id_nhan_hieu, id_danh_muc, mo_ta, anh) 
-  //               VALUES (:name, :quantity, :price_discount, :price, :brand, :category, :description, :image)";
+        $fileName = basename($_FILES['image']['name']);
+        $targetFilePath = $uploadDir . $fileName;
 
-  //     $stmt = $this->conn->prepare($query);
-  //     $stmt->bindParam(':name', $data['product_name']);
-  //     $stmt->bindParam(':quantity', $data['quantity']);
-  //     $stmt->bindParam(':price', $data['price']);
-  //     $stmt->bindParam(':price_discount', $data['price_discount']);
-  //     $stmt->bindParam(':brand', $data['brand']);
-  //     $stmt->bindParam(':category', $data['category']);
-  //     $stmt->bindParam(':description', $data['description']);
-  //     $stmt->bindParam(':image', $imageFullPath);
+        $allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+       
 
-  //     if ($stmt->execute()) {
-  //       return ['status' => true, 'message' => 'Thêm sản phẩm thành công!'];
-  //     } else {
-  //       return ['status' => false, 'message' => 'Lỗi khi thêm sản phẩm!'];
-  //     }
-  //   } catch (Exception $e) {
-  //     return ['status' => false, 'message' => $e->getMessage()];
-  //   }
-  // }
+        move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath);
+        $imageFullPath = $targetFilePath;
+
+        if (!isset($_FILES['filePdf']) || $_FILES['filePdf']['error'] !== 0) {
+            die("Lỗi tải file PDF lên: " . $_FILES['filePdf']['error']);
+        }
+
+        $filePdf = basename($_FILES['filePdf']['name']);
+        $targetFilePdfPath = $uploadDir . $filePdf;
+
+        if ($_FILES['filePdf']['type'] !== 'application/pdf') {
+            die("Lỗi: Chỉ chấp nhận file PDF.");
+        }
+
+        move_uploaded_file($_FILES['filePdf']['tmp_name'], $targetFilePdfPath);
+        $fileFullPath = $targetFilePdfPath;
+
+        if (empty($_POST['title']) || empty($_POST['description']) || empty($_POST['price'])) {
+            die("Lỗi: Tất cả các trường đều phải nhập!");
+        }
+
+        $query = "INSERT INTO products (title, description, price, file_path, thumbnail) 
+                  VALUES (:title, :description, :price, :file_path, :thumbnail)";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':title', $_POST['title']);
+        $stmt->bindParam(':description', $_POST['description']);
+        $stmt->bindParam(':price', $_POST['price']);
+        $stmt->bindParam(':file_path', $fileFullPath);
+        $stmt->bindParam(':thumbnail', $imageFullPath);
+
+        if ($stmt->execute()) {
+            echo "Thêm sản phẩm thành công!";
+        } else {
+            die("Lỗi SQL: " . implode(" | ", $stmt->errorInfo()));
+        }
+    } catch (Exception $e) {
+        die("Lỗi: " . $e->getMessage());
+    }
+}
+
+
+public function deleteProduct($id)
+{
+    try {
+        $query = "DELETE FROM products WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        if ($stmt->execute()) {
+            echo "Xóa sản phẩm thành công!";
+        } else {
+            die("Lỗi SQL: " . implode(" | ", $stmt->errorInfo()));
+        }
+    } catch (Exception $e) {
+        die("Lỗi: " . $e->getMessage());
+    }
+}
+
+
+public function updateProduct()
+{
+    try {
+        $id = $_POST['id'];
+        $query = "SELECT * FROM products WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$product) {
+            die("Lỗi: Sản phẩm không tồn tại!");
+        }
+
+       
+        $title = $_POST['title'] ?? '';
+        $description = $_POST['description'] ?? '';
+        $price = $_POST['price'] ?? '';
+
+        if (empty($title) || empty($description) || empty($price)) {
+            die("Lỗi: Tất cả các trường đều phải nhập!");
+        }
+
+      
+        $uploadDir = './uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+       
+        $imageFullPath = $product['thumbnail']; 
+        if (!empty($_FILES['image']['name'])) {
+            if ($_FILES['image']['error'] !== 0) {
+                die("Lỗi tải ảnh lên: " . $_FILES['image']['error']);
+            }
+
+           
+
+            $fileName = basename($_FILES['image']['name']);
+            $targetFilePath = $uploadDir . $fileName;
+            move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath);
+
+            $imageFullPath = $targetFilePath; 
+        }
+
+        $fileFullPath = $product['file_path']; 
+        if (!empty($_FILES['filePdf']['name'])) {
+            if ($_FILES['filePdf']['error'] !== 0) {
+                die("Lỗi tải file PDF lên: " . $_FILES['filePdf']['error']);
+            }
+
+            if ($_FILES['filePdf']['type'] !== 'application/pdf') {
+                die("Lỗi: Chỉ chấp nhận file PDF.");
+            }
+
+            $filePdf = basename($_FILES['filePdf']['name']);
+            $targetFilePdfPath = $uploadDir . $filePdf;
+            move_uploaded_file($_FILES['filePdf']['tmp_name'], $targetFilePdfPath);
+
+            $fileFullPath = $targetFilePdfPath;
+        }
+
+        $query = "UPDATE products 
+                  SET title = :title, description = :description, price = :price, 
+                      file_path = :file_path, thumbnail = :thumbnail 
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':file_path', $fileFullPath);
+        $stmt->bindParam(':thumbnail', $imageFullPath);
+        $stmt->bindParam(':id', $id);
+
+        if ($stmt->execute()) {
+            echo "Cập nhật sản phẩm thành công!";
+        } else {
+            die("Lỗi SQL: " . implode(" | ", $stmt->errorInfo()));
+        }
+    } catch (Exception $e) {
+        die("Lỗi: " . $e->getMessage());
+    }
+}
+
+
+  
+  
+  
 
   // public function updateProduct($data, $file)
   // {
