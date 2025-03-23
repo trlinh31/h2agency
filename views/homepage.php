@@ -38,8 +38,21 @@
           <div class="service-card">
             <img src="<?= $product['thumbnail'] ?>" alt="" />
             <h3><?= $product['title'] ?></h3>
-            <p><?= $product['description'] ?></p>
-            <a href="?page=san-pham&id=<?= $product['id'] ?>" class="btn btn-secondary">TÌM HIỂU THÊM</a>
+            <p style="margin-bottom: 12px;"><?= $product['description'] ?></p>
+            <button class="btn btn-secondary" onclick="openModal(<?= $product['id'] ?>)">TÌM HIỂU THÊM</button>
+          </div>
+          <div id="productModal<?= $product['id'] ?>" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal(<?= $product['id'] ?>)">&times;</span>
+              <h2><?= $product['title'] ?></h2>
+              <p><?= $product['description'] ?></p>
+              <p style="margin-bottom: 12px;">
+                <strong><?= number_format($product['price'], 0, ',', '.') ?>đ</strong>
+              </p>
+              <form action="" method="post">
+                <button type="submit" class="btn btn-secondary">TẢI XUỐNG</button>
+              </form>
+            </div>
           </div>
         <?php endforeach; ?>
       </div>
@@ -286,6 +299,17 @@
 
   <?php require_once('views/layouts/footer.php'); ?>
 
+  <script>
+    function openModal(id) {
+      var modal = document.getElementById("productModal" + id);
+      modal.style.display = "block";
+    }
+
+    function closeModal(id) {
+      var modal = document.getElementById("productModal" + id);
+      modal.style.display = "none";
+    }
+  </script>
   <script src="./assets/js/script.js"></script>
 </body>
 
